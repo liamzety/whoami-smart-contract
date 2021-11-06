@@ -4,9 +4,24 @@ pragma solidity ^0.5.16;
 contract MyContract {
     string public name;
     uint256 public age;
+    uint256 public hobbiesCount;
 
+    // initiator - default values upon deployment
     constructor() public {
         name = "Liam";
+    }
+
+    struct Hobby {
+        uint id;
+        string title;
+        bool isBeingPracticed;
+    }
+
+    mapping(uint => Hobby) public hobbies;
+
+    function createHobby(string memory _title, bool _isBeingPracticed) public {
+	  hobbiesCount++;
+      hobbies[hobbiesCount] = Hobby(hobbiesCount, _title, _isBeingPracticed);
     }
 
     /* 
